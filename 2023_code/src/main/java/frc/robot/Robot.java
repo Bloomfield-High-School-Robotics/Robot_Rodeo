@@ -35,6 +35,7 @@ public class Robot extends TimedRobot {
    private ADXRS450_Gyro gyro;
    @Override
   public void robotInit() {
+    //ravi stinks this is a test
     //joy = new Joystick(1);
     intaker = new intake();
     launch = new launcher();
