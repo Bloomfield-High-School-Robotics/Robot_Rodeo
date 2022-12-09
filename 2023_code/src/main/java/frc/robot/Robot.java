@@ -12,12 +12,16 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 //import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.SPI;
 
 public class Robot extends TimedRobot {
-  private XboxController m_controller;
+  private AddressableLED m_led;
+  private AddressableLEDBuffer m_ledBuffer;
+  /*private XboxController m_controller;
   private XboxController m_controller2;
   private indexer index;
   private intake intaker;
@@ -33,11 +37,28 @@ public class Robot extends TimedRobot {
    private climber climb;
    //private Joystick joy;
    private ADXRS450_Gyro gyro;
+   */
+   @Override
+  public void robotPeriodic(){
+
+  }
    @Override
   public void robotInit() {
+    m_led = new AddressableLED(9);
+    m_ledBuffer = new AddressableLEDBuffer(150);
+    m_led.setLength(m_ledBuffer.getLength());
+    // Set the data
+    for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+      // Sets the specified LED to the RGB values for red
+      m_ledBuffer.setRGB(i, 255, 0, 0);
+   }
+    m_led.setData(m_ledBuffer);
+    m_led.start();
+    }
+  }
     //ravi stinks this is a test
     //joy = new Joystick(1);
-    intaker = new intake();
+    /*intaker = new intake();
     launch = new launcher();
     index = new indexer();
     climb = new climber();
@@ -57,9 +78,12 @@ public class Robot extends TimedRobot {
     gyro.reset();
     gyro.calibrate();
     time = new Timer();
+    *//*
   }
+
   @Override
   public void teleopPeriodic() {
+    
     SmartDashboard.putNumber("Left Y", m_controller.getLeftY());
     SmartDashboard.putNumber("anlge", gyro.getAngle());
     SmartDashboard.putNumber("Right X", m_controller.getRightX());
@@ -69,7 +93,7 @@ public class Robot extends TimedRobot {
     index.setspeeds(0.0, 0.0);
     launch.setspeed(0.0);
     climb.setspeed(0.0);
-    /*
+    
     if(m_controller.getBButtonPressed()){
       launch.makeTrue();
     }
@@ -102,19 +126,19 @@ public class Robot extends TimedRobot {
        time.reset();
      }
      
-    }*/
+    }
 
     
     //2nd driver spins the launcher!!!!!
   if(m_controller2.getAButton()){
     launch.setspeed(.705);
     }
-    /*if(m_controller.getPOV()==0){
+    if(m_controller.getPOV()==0){
       time.stop();
       time.reset();
       launch.makefalse();
     }
-    */
+    
     if(m_controller.getPOV()==90){
      gyro.reset();
     }
@@ -202,4 +226,4 @@ else if(now>3.25){
 
   }
 }
-
+*/
