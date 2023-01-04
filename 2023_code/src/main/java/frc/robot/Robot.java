@@ -14,6 +14,7 @@ public class Robot extends TimedRobot {
 
  @Override
   public void robotInit() {
+    //These are just placeholder ID's
     dt_ll = new CANSparkMax(1, MotorType.kBrushed);
     dt_lf = new CANSparkMax(2, MotorType.kBrushed);
     dt_rl = new CANSparkMax(3, MotorType.kBrushed);
