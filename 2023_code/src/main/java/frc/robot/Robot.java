@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-
-
+import frc.robot.drivetrain;
+import frc.robot.constants;
 public class Robot extends TimedRobot {
   //private vars
   private XboxController control;
