@@ -4,7 +4,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-import frc.robot.constants;
+
 
 public class drivetrain {
     private static CANSparkMax leftFront;
@@ -31,6 +31,11 @@ public class drivetrain {
     }
     public void move(Double leftValue,Double rightValue){
         drive.tankDrive(leftValue,rightValue);
-        
+    }
+    public void moveLeft(Double leftValue){
+        leftDrive.set(leftValue);
+    }
+    public void moveRight(Double rightValue){
+        rightDrive.set(rightValue);
     }
 }
