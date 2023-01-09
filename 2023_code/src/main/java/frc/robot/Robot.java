@@ -3,8 +3,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import com.ctre.phoenix.sensors.WPI_Pigeon2;
-
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -15,7 +13,7 @@ public class Robot extends TimedRobot {
   //calculated error to be determined in the lineUpTarget function
   private double adjustError;
   //gyro
-  private WPI_Pigeon2 gyro;
+
 
    @Override
 public void robotInit() {
@@ -23,20 +21,20 @@ public void robotInit() {
   control = new XboxController(0);
   //new drivetrain (check drivetrain class in the files of the same folder)
   drive= new drivetrain();
-  gyro = new WPI_Pigeon2(0,"bot");
+
 }
   @Override
   public void teleopPeriodic() {
     //limeVals is an array of doubles length of 3. first is the x value read from the limelight, second is the y value, and 3rd is area
     double[] limeVals=limelightPeriodic();
     //if a button is held down and theres a valid target in sight
-    if(control.getAButton() && limeVals[3]==1.0){
+    if(control.getAButton() && limeVals[3]>1.0){
       //calling the move function from drivetrain class (tank drive) with the errors as the inputs
-      drive.move(adjustError,adjustError);
+      drive.move(adjustError,-adjustError);
     }
     else{
       //regular tank drive
-      drive.move(control.getLeftY(),control.getLeftX());
+      drive.move(control.getLeftY(),control.getRightY());
     }
 
 

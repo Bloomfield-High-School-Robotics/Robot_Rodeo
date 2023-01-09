@@ -32,10 +32,5 @@ public class drivetrain {
     public void move(Double leftValue,Double rightValue){
         drive.tankDrive(leftValue,rightValue);
     }
-    public void moveLeft(Double leftValue){
-        leftDrive.set(leftValue);
-    }
-    public void moveRight(Double rightValue){
-        rightDrive.set(rightValue);
-    }
+    
 }
