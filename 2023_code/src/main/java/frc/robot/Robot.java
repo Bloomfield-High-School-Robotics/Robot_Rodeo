@@ -3,17 +3,19 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.ctre.phoenix.sensors.WPI_Pigeon2;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import frc.robot.drivetrain;
-import frc.robot.constants;
 public class Robot extends TimedRobot {
   //private vars
   private XboxController control;
   private drivetrain drive;
   //calculated error to be determined in the lineUpTarget function
   private double adjustError;
+  //gyro
+  private WPI_Pigeon2 gyro;
 
    @Override
 public void robotInit() {
@@ -21,6 +23,7 @@ public void robotInit() {
   control = new XboxController(0);
   //new drivetrain (check drivetrain class in the files of the same folder)
   drive= new drivetrain();
+  gyro = new WPI_Pigeon2(0,"bot");
 }
   @Override
   public void teleopPeriodic() {
@@ -35,6 +38,9 @@ public void robotInit() {
       //regular tank drive
       drive.move(control.getLeftY(),control.getLeftX());
     }
+
+
+    //yaw is Y axis, Pitch is X axis, roll is Z axis
     
   }
   public double[] limelightPeriodic(){
