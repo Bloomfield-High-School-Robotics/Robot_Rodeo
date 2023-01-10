@@ -6,7 +6,9 @@ public class Robot extends TimedRobot {
   private XboxController control2;
   private CANSparkMax dt_ll;
   private CANSparkMax dt_lf;
+  private CANSparkMax dt_lf2;
   private CANSparkMax dt_rf;
+  private CANSparkMax dt_rf2;
   private CANSparkMax dt_rl;
   private MotorControllerGroup mc_left; 
   private MotorControllerGroup mc_right; 
@@ -17,12 +19,14 @@ public class Robot extends TimedRobot {
     //These are just placeholder ID's
     dt_ll = new CANSparkMax(1, MotorType.kBrushed);
     dt_lf = new CANSparkMax(2, MotorType.kBrushed);
-    dt_rl = new CANSparkMax(3, MotorType.kBrushed);
-    dt_rf = new CANSparkMax(4, MotorType.kBrushed);
+    dt_lf2 = new CANSparkMax(3, MotorType.kBrushed);
+    dt_rl = new CANSparkMax(4, MotorType.kBrushed);
+    dt_rf = new CANSparkMax(5, MotorType.kBrushed);
+    dt_rf2 = new CANSparkMax(6, MotorType.kBrushed);
     control1 = new XboxController(1);
     control2 = new XboxController(2);
-    mc_left = new MotorControllerGroup(dt_lf, dt_ll);
-    mc_right  = new MotorControllerGroup(dt_rf, dt_rl);
+    mc_left = new MotorControllerGroup(dt_ll, dt_lf, dt_lf2);
+    mc_right  = new MotorControllerGroup(dt_rl, dt_rf, dt_rf2);
     dt_main = new DifferentialDrive(mc_left, mc_right);  
     mc_right.setInverted(true);
    }
