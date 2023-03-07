@@ -66,6 +66,7 @@ public class Drivetrain {
     private Pigeon2 pig = new Pigeon2(7);
     private boolean ele = false;
     private Timer timew = new Timer();
+    private ADXRS450_Gyro gryo = new ADXRS450_Gyro();
 
     // Odometry Initialization
     DifferentialDriveOdometry odom;
@@ -164,10 +165,15 @@ public class Drivetrain {
         }
         */    
     }
-
+    public void autonI(){
+        gyro.reset();
+        gyro.calibrate();
+        timew.reset();
+        timew.start();
+    }
     public void auton() {
         SmartDashboard.putNumber("angle", gyro.getAngle());
-        SmartDashboard.putNumber("timer", time.get());
+        SmartDashboard.putNumber("timer", time.get())
         /*setpoint = 30; 
         double feet = ((dt_enc_1.getPosition()*kEncConstant)/12);
         double output = pid.calculate(feet, setpoint);
