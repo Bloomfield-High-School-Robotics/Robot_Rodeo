@@ -65,8 +65,8 @@ public class Drivetrain {
     private int setpoint;
     private Pigeon2 pig = new Pigeon2(7);
     private boolean ele = false;
-    private Timer timew = new Timer();
-    private ADXRS450_Gyro gryo = new ADXRS450_Gyro();
+    private Timer timer = new Timer();
+    private ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
     // Odometry Initialization
     DifferentialDriveOdometry odom;
@@ -126,18 +126,18 @@ public class Drivetrain {
         //inagle
         mech.Intake(control1.getBButton(), control1.getYButton());
 
-        if(control1.getAButtonPressed()) {
+        if(control2.getAButtonPressed()) {
             ele = !ele;
         }
 
-        mech.Elevator(ele);
+        //mech.Elevator(ele);
 
-        //mech.ElevatorManual(control2.getRightTriggerAxis() > 0, control2.getLeftTriggerAxis() > 0);
+        mech.ElevatorManual(control1.getRightTriggerAxis() > 0, control1.getLeftTriggerAxis() > 0);
 
-        mech.inAngle(control2.getRightTriggerAxis() > 0, control2.getLeftTriggerAxis() > 0);
+        mech.inAngle(control1.getRightTriggerAxis() > 0, control1.getLeftTriggerAxis() > 0);
         
         //cow(KILLER)catcher
-        mech.cowCatch(control1.getLeftBumper(), control1.getRightBumper());
+        mech.cowCatch(control2.getLeftBumper(), control2.getRightBumper());
         
 
         //Limelight Pseudo-Code
@@ -168,8 +168,8 @@ public class Drivetrain {
     public void autonI(){
         gyro.reset();
         gyro.calibrate();
-        timew.reset();
-        timew.start();
+        timer.reset();
+        timer.start();
     }
     public void auton() {
         SmartDashboard.putNumber("angle", gyro.getAngle());
